@@ -39,13 +39,19 @@ export default function HomePage() {
 
       <section className="section collection-intro">
         <SectionHeading eyebrow="The collection" title={<>Nourishment for every <em>root.</em></>} body="Organic oils for your scalp, hair, lashes, and brows, plus a bamboo brush for your hair-care routine." />
-        <div className="category-grid">
-          {categories.map((category) => (
-            <Link className={`category-card ${category.className}`} href="/products" key={category.name}>
-              <Image fill sizes="(max-width: 700px) 100vw, 33vw" src={category.image} alt={category.alt} />
-              <span>{category.name} <b>→</b></span>
-            </Link>
-          ))}
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '1rem', marginTop: '2rem', marginRight: 0, marginBottom: 0, marginLeft: 0 }}>
+          <div style={{ position: 'relative', aspectRatio: '1/2', borderRadius: '0.5rem', overflow: 'hidden', backgroundColor: '#b6926f' }}>
+            <Image fill sizes="(max-width: 700px) 100vw, 25vw" src="/images/B1BA4CA7-E214-41CE-8B8F-A722BFEABE53.JPEG" alt="Scalp-focused care oil" style={{ objectFit: 'contain' }} />
+          </div>
+          <div style={{ position: 'relative', aspectRatio: '1/2', borderRadius: '0.5rem', overflow: 'hidden', backgroundColor: '#b6926f' }}>
+            <Image fill sizes="(max-width: 700px) 100vw, 25vw" src="/images/IMG_1215.JPG" alt="Organic hair oil" style={{ objectFit: 'contain' }} />
+          </div>
+          <div style={{ position: 'relative', aspectRatio: '1/2', borderRadius: '0.5rem', overflow: 'hidden', backgroundColor: '#b6926f' }}>
+            <Image fill sizes="(max-width: 700px) 100vw, 25vw" src="/images/IMG_1216.JPG" alt="Nourishing lash oil" style={{ objectFit: 'contain' }} />
+          </div>
+          <div style={{ position: 'relative', aspectRatio: '1/2', borderRadius: '0.5rem', overflow: 'hidden', backgroundColor: '#b6926f' }}>
+            <Image fill sizes="(max-width: 700px) 100vw, 25vw" src="/images/IMG_1221.JPEG" alt="Nourishing eyebrow oil" style={{ objectFit: 'contain' }} />
+          </div>
         </div>
       </section>
 
