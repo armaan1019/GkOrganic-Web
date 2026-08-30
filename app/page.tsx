@@ -1,69 +1,69 @@
 import Image from "next/image";
+import Link from "next/link";
+import { FeaturedProducts, Newsletter, SectionHeading } from "./components";
 
-export default function Home() {
+const categories = [
+  { name: "Botanical oils", image: "/images/oil.svg", alt: "Illustration of botanical oil", className: "category-card-tall" },
+  { name: "Handcrafted soaps", image: "/images/soap.svg", alt: "Illustration of handmade soap bars", className: "" },
+  { name: "Bath rituals", image: "/images/bath.svg", alt: "Illustration of botanical bath essentials", className: "" },
+];
+
+/** Home page: introduces the brand, categories, and most-loved products. */
+export default function HomePage() {
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert h-5 w-[100px]"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the{" "}
-            <code className="rounded bg-black/[.06] px-1.5 py-0.5 font-mono text-[0.9em] dark:bg-white/[.08]">
-              page.tsx
-            </code>{" "}
-            file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
+    <>
+      <section className="hero">
+        <div className="hero-copy">
+          <p className="eyebrow">Slow rituals for every day</p>
+          <h1>Made from the<br /><em>earth, with care.</em></h1>
+          <p className="hero-text">Small-batch soaps and botanical oils, crafted to make your daily rituals feel a little more grounded.</p>
+          <div className="hero-actions">
+            <Link className="button button-dark" href="/products">Shop the collection <span>→</span></Link>
+            <Link className="text-link" href="/about">Our story <span>↗</span></Link>
+          </div>
         </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert h-[14px] w-4"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={14}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
+        <div className="hero-art">
+          <div className="sun-disc" />
+          <div className="hero-arch">
+            <Image fill priority sizes="(max-width: 700px) 100vw, 50vw" src="/images/botanical-hero.svg" alt="Illustration of natural soap and botanicals" />
+          </div>
+          <p className="hero-note">Nurtured by nature<br />since 2016</p>
+          <div aria-hidden="true" className="leaf-sprig">❧</div>
         </div>
-      </main>
-    </div>
+      </section>
+
+      <section className="value-strip" aria-label="GK Organic values">
+        <p>Plant-powered ingredients</p><span>✦</span><p>Made by hand in California</p><span>✦</span><p>Always cruelty free</p>
+      </section>
+
+      <section className="section collection-intro">
+        <SectionHeading eyebrow="The collection" title={<>Little luxuries, made <em>natural.</em></>} body="Thoughtfully formulated essentials for your skin, your senses, and the small moments in between." />
+        <div className="category-grid">
+          {categories.map((category) => (
+            <Link className={`category-card ${category.className}`} href="/products" key={category.name}>
+              <Image fill sizes="(max-width: 700px) 100vw, 33vw" src={category.image} alt={category.alt} />
+              <span>{category.name} <b>→</b></span>
+            </Link>
+          ))}
+        </div>
+      </section>
+
+      <section className="section ritual-section">
+        <div className="ritual-image"><Image fill sizes="(max-width: 700px) 100vw, 50vw" src="/images/oil.svg" alt="Illustration of a botanical skincare ritual" /></div>
+        <div className="ritual-copy">
+          <p className="eyebrow">A gentler way</p>
+          <h2>Your skin knows<br />what <em>simple</em> feels like.</h2>
+          <p>We believe that care is found in the everyday: a warm shower, a favorite scent, a few unhurried minutes just for you.</p>
+          <Link className="button button-outline" href="/about">Meet GK_Organic <span>→</span></Link>
+        </div>
+      </section>
+
+      <section className="section featured-section">
+        <SectionHeading eyebrow="Most loved" title={<>The everyday <em>essentials.</em></>} />
+        <FeaturedProducts />
+        <div className="center"><Link className="text-link" href="/products">See all products <span>→</span></Link></div>
+      </section>
+      <Newsletter />
+    </>
   );
 }
