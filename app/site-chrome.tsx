@@ -10,7 +10,20 @@ export function Header() {
         <Link href="/about">Our story</Link>
         <Link href="/contact">Contact</Link>
       </nav>
-      <Link className="cart" href="/products">Bag <span>(0)</span></Link>
+      <details className="account-menu">
+        <summary aria-label="Open account menu">
+          <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7">
+            <circle cx="12" cy="8" r="3.5" />
+            <path d="M4.5 20c.8-3.4 3.4-5.5 7.5-5.5s6.7 2.1 7.5 5.5" />
+          </svg>
+          <span>Account</span>
+        </summary>
+        <div className="account-menu-panel">
+          {/* Replace Guest with the signed-in user's name when authentication is connected. */}
+          <p>Hello, <strong>Guest</strong></p>
+          <Link href="/account">View account <span>→</span></Link>
+        </div>
+      </details>
     </header>
   );
 }
