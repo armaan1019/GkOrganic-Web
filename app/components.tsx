@@ -4,9 +4,10 @@ import type { ReactNode } from "react";
 
 /** Product data is kept in one place so product cards stay consistent across pages. */
 export const products = [
-  { name: "Wild Olive Body Oil", type: "Nourishing body oil", price: "$32", color: "olive", image: "/images/oil.svg" },
-  { name: "Oat & Honey Soap", type: "Gentle cleansing bar", price: "$14", color: "honey", image: "/images/soap.svg" },
-  { name: "Cedar + Clay Soap", type: "Earthy cleansing bar", price: "$14", color: "clay", image: "/images/bath.svg" },
+  { name: "Organic Hair Oil", type: "Customizable for your hair and scalp concerns", color: "olive", image: "/images/IMG_1215.JPG" },
+  { name: "Lash Oil", type: "Nourishes lashes and supports healthy growth", color: "honey", image: "/images/IMG_1216.JPG" },
+  { name: "Eyebrow Oil", type: "Nourishes brows and supports healthy growth", color: "clay", image: "/images/IMG_1221.JPEG" },
+  { name: "Bamboo Brush", type: "A bamboo brush for your hair-care routine", color: "honey", image: "/images/IMG_9758.JPG" },
 ];
 
 type SectionHeadingProps = {
@@ -41,7 +42,6 @@ export function FeaturedProducts() {
               <h3>{product.name}</h3>
               <p>{product.type}</p>
             </div>
-            <strong>{product.price}</strong>
           </div>
         </article>
       ))}
@@ -54,15 +54,15 @@ export function Newsletter() {
   return (
     <section className="newsletter">
       <div>
-        <p className="eyebrow">A note from the grove</p>
-        <h2>Good things, <em>growing.</em></h2>
+        <p className="eyebrow">Stay in touch</p>
+        <h2>Care for hair,<br /><em>lashes &amp; brows.</em></h2>
       </div>
       <form>
         <label className="sr-only" htmlFor="email">Email address</label>
         <input id="email" type="email" placeholder="Your email address" />
         <button aria-label="Subscribe" type="submit">→</button>
       </form>
-      <p>Seasonal rituals, garden notes, and 10% off your first order.</p>
+      <p>Subscribe for updates from GK Organic.</p>
     </section>
   );
 }

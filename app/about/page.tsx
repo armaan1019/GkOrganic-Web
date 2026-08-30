@@ -2,31 +2,31 @@ import Image from "next/image";
 import Link from "next/link";
 
 const principles = [
-  { number: "01", title: "Rooted in plants", description: "We choose ingredients that are gentle on skin and kind to the land." },
-  { number: "02", title: "Made slowly", description: "Small batches let us give every formula the care it deserves." },
-  { number: "03", title: "Less, but better", description: "Thoughtful essentials, designed to be used to the very last drop." },
+  { number: "01", title: "Scalp health", description: "Our organic hair oil helps care for dry, flaky scalp." },
+  { number: "02", title: "Healthy growth", description: "The oil promotes healthy hair growth and leaves hair soft after one use." },
+  { number: "03", title: "Your concerns", description: "Each hair oil can be customized for your hair and scalp concerns." },
 ];
 
-/** About page: shares GK_Organic's origin story and guiding principles. */
+/** About page: shares GK Organic's origin story and guiding principles. */
 export default function AboutPage() {
   return (
     <>
       <section className="about-hero">
         <div>
-          <p className="eyebrow">Our roots</p>
-          <h1>Care grows<br />from <em>curiosity.</em></h1>
+          <p className="eyebrow">About our oils</p>
+          <h1>Care that starts<br />at the <em>scalp.</em></h1>
         </div>
         <div className="about-image">
-          <Image fill sizes="(max-width: 700px) 100vw, 50vw" src="/images/botanical-hero.svg" alt="Illustration of botanical ingredients" />
+          <Image fill sizes="(max-width: 700px) 100vw, 50vw" src="/images/0E0CF421-DB63-4FB6-BAFA-EE0DD3A56093.JPG" alt="Organic hair oil" />
         </div>
       </section>
 
       <section className="section story">
-        <p className="eyebrow">Our story</p>
+        <p className="eyebrow">Scalp-first care</p>
         <div>
-          <h2>Made for the moments<br />that bring you <em>back to yourself.</em></h2>
-          <p>GK_Organic began at a kitchen table in coastal California, with a few jars of golden oil and a desire to make everyday care feel more considered. Today, every bar and bottle is still made in small batches, with plant-rich ingredients and a whole lot of intention.</p>
-          <Link className="button button-dark" href="/products">Discover our goods <span>→</span></Link>
+          <h2>Healthy hair starts<br />at the <em>scalp.</em></h2>
+          <p>Our organic hair oil supports scalp health, helps with dry, flaky scalp, and rejuvenates hair. Over time, it helps reduce split ends. Each oil can be customized for your hair and scalp concerns.</p>
+          <Link className="button button-dark" href="/products">Shop our oils <span>→</span></Link>
         </div>
       </section>
 

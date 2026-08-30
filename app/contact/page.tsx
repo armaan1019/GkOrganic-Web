@@ -17,8 +17,8 @@ export default function ContactPage() {
       <section className="section contact-layout">
         <aside>
           <p className="eyebrow">Follow us</p>
-          <h3>Find your daily ritual.</h3>
-          <p className="social-intro">Follow along for fresh ideas, ingredients we love, and quiet moments from the grove.</p>
+          <h3>Follow GK Organic.</h3>
+          <p className="social-intro">Keep up with our organic hair, lash, and eyebrow oils.</p>
           <div className="social-links">
             {socialLinks.map((social) => (
               <a href={social.href} key={social.label} className="social-link">

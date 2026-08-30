@@ -1,11 +1,15 @@
+import Image from "next/image";
 import Link from "next/link";
 
 /** Sign-in entry point. Connect these controls to an auth provider when one is selected. */
 export default function LoginPage() {
   return (
     <section className="account-page">
+      <div style={{ position: 'absolute', inset: 0, zIndex: -1 }}>
+        <Image fill sizes="100vw" src="/images/IMG_9914.JPEG" alt="Background" style={{ objectFit: 'cover', filter: 'sepia(0.15) saturate(0.8)', opacity: 0.3 }} />
+      </div>
       <div className="account-card">
-        <p className="eyebrow">Your GK_Organic account</p>
+        <p className="eyebrow">Your GK Organic account</p>
         <h1>Welcome back</h1>
         <p className="account-subtitle">Sign in to pick up where you left off.</p>
 
@@ -23,7 +27,7 @@ export default function LoginPage() {
           <button className="button button-dark" type="submit">Sign in <span>→</span></button>
         </form>
 
-        <p className="account-note">New to GK_Organic? <Link href="/account">Create an account</Link></p>
+        <p className="account-note">New to GK Organic? <Link href="/account">Create an account</Link></p>
       </div>
     </section>
   );

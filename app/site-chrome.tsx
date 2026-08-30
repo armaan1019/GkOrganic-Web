@@ -22,7 +22,7 @@ export function Header() {
 
   return (
     <header className="site-header">
-      <Link className="brand" href="/"><span>✣</span> GK_Organic</Link>
+      <Link className="brand" href="/"><span>GK</span> Organic</Link>
       <nav aria-label="Primary navigation">
         <Link href="/products">Shop</Link>
         <Link href="/about">Our story</Link>
@@ -47,9 +47,9 @@ export function Header() {
 export function Footer() {
   return (
     <footer className="site-footer">
-      <div><Link className="brand" href="/"><span>✣</span> GK_Organic</Link><p>Plant-rich care for every day.</p></div>
+      <div><Link className="brand" href="/"><span>GK</span> Organic</Link><p>Organic oils and bamboo brushes for hair, lashes, and brows.</p></div>
       <div className="footer-links"><Link href="/products">Shop all</Link><Link href="/about">Our story</Link><Link href="/contact">Contact</Link></div>
-      <p className="copyright">© 2026 GK_Organic<br />Made with care in California</p>
+      <p className="copyright">© 2026 GK Organic</p>
     </footer>
   );
 }

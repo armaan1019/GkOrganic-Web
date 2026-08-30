@@ -1,9 +1,14 @@
+import Image from "next/image";
+
 /** Account entry point. Connect these controls to an auth provider when one is selected. */
 export default function AccountPage() {
   return (
     <section className="account-page">
+      <div style={{ position: 'absolute', inset: 0, zIndex: -1 }}>
+        <Image fill sizes="100vw" src="/images/IMG_9979.JPG" alt="Background" style={{ objectFit: 'cover', filter: 'sepia(0.15) saturate(0.8)', opacity: 0.3 }} />
+      </div>
       <div className="account-card">
-        <p className="eyebrow">Your GK_Organic account</p>
+        <p className="eyebrow">Your GK Organic account</p>
         <h1>Create an account</h1>
         <p className="account-subtitle">Save your details and make future orders feel a little easier.</p>
 
