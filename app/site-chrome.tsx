@@ -1,4 +1,7 @@
+"use client";
+
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 
 type SignedInUser = { name: string };
 
@@ -19,14 +22,50 @@ function AccountIcon() {
 /** Persistent site navigation displayed above every page. */
 export function Header() {
   const user = getCurrentUser();
+  const pathname = usePathname();
+
+  const isActive = (href: string): boolean => {
+    if (href === "/") return pathname === "/";
+    return pathname.startsWith(href);
+  };
 
   return (
     <header className="site-header">
       <Link className="brand" href="/"><span>GK</span> Organic</Link>
       <nav aria-label="Primary navigation">
-        <Link href="/products">Shop</Link>
-        <Link href="/about">Our story</Link>
-        <Link href="/contact">Contact</Link>
+        <Link
+          href="/products"
+          style={{
+            backgroundColor: isActive("/products") ? "rgba(0, 0, 0, 0.08)" : "transparent",
+            padding: "0.5rem 0.75rem",
+            borderRadius: "0.375rem",
+            transition: "background-color 0.2s",
+          }}
+        >
+          Shop
+        </Link>
+        <Link
+          href="/about"
+          style={{
+            backgroundColor: isActive("/about") ? "rgba(0, 0, 0, 0.08)" : "transparent",
+            padding: "0.5rem 0.75rem",
+            borderRadius: "0.375rem",
+            transition: "background-color 0.2s",
+          }}
+        >
+          Our story
+        </Link>
+        <Link
+          href="/contact"
+          style={{
+            backgroundColor: isActive("/contact") ? "rgba(0, 0, 0, 0.08)" : "transparent",
+            padding: "0.5rem 0.75rem",
+            borderRadius: "0.375rem",
+            transition: "background-color 0.2s",
+          }}
+        >
+          Contact
+        </Link>
       </nav>
       {user ? (
         <details className="account-menu">
