@@ -1,4 +1,4 @@
-import { FeaturedProducts, Newsletter } from "../components";
+import { FeaturedProducts } from "../components";
 
 /** Shop page: presents category links and the current product collection. */
 export default function ProductsPage() {
@@ -17,7 +17,6 @@ export default function ProductsPage() {
         <FeaturedProducts />
         <FeaturedProducts />
       </section>
-      <Newsletter />
     </>
   );
 }

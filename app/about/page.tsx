@@ -1,6 +1,5 @@
 import Image from "next/image";
 import Link from "next/link";
-import { Newsletter } from "../components";
 
 const principles = [
   { number: "01", title: "Rooted in plants", description: "We choose ingredients that are gentle on skin and kind to the land." },
@@ -40,7 +39,6 @@ export default function AboutPage() {
           </article>
         ))}
       </section>
-      <Newsletter />
     </>
   );
 }

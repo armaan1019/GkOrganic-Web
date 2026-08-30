@@ -4,8 +4,8 @@ import { FeaturedProducts, Newsletter, SectionHeading } from "./components";
 
 const categories = [
   { name: "Botanical oils", image: "/images/oil.svg", alt: "Illustration of botanical oil", className: "category-card-tall" },
-  { name: "Handcrafted soaps", image: "/images/soap.svg", alt: "Illustration of handmade soap bars", className: "" },
-  { name: "Bath rituals", image: "/images/bath.svg", alt: "Illustration of botanical bath essentials", className: "" },
+  { name: "Handcrafted soaps", image: "/images/soap.svg", alt: "Illustration of handmade soap bars", className: "category-card-tall" },
+  { name: "Bath rituals", image: "/images/bath.svg", alt: "Illustration of botanical bath essentials", className: "category-card-tall" },
 ];
 
 /** Home page: introduces the brand, categories, and most-loved products. */
