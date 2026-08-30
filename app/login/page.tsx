@@ -1,11 +1,13 @@
-/** Account entry point. Connect these controls to an auth provider when one is selected. */
-export default function AccountPage() {
+import Link from "next/link";
+
+/** Sign-in entry point. Connect these controls to an auth provider when one is selected. */
+export default function LoginPage() {
   return (
     <section className="account-page">
       <div className="account-card">
         <p className="eyebrow">Your GK_Organic account</p>
-        <h1>Create an account</h1>
-        <p className="account-subtitle">Save your details and make future orders feel a little easier.</p>
+        <h1>Welcome back</h1>
+        <p className="account-subtitle">Sign in to pick up where you left off.</p>
 
         {/* Google OAuth can be connected here once a provider and callback URL are configured. */}
         <button className="google-button" type="button">
@@ -16,14 +18,13 @@ export default function AccountPage() {
         <div className="account-divider"><span>or use your email</span></div>
 
         <form className="account-form">
-          <label htmlFor="account-email">Email address<input id="account-email" name="email" type="email" autoComplete="email" placeholder="you@example.com" required /></label>
-          <label htmlFor="account-password">Password<input id="account-password" name="password" type="password" autoComplete="new-password" placeholder="At least 8 characters" minLength={8} required /></label>
-          <button className="button button-dark" type="submit">Create account <span>→</span></button>
+          <label htmlFor="login-email">Email address<input id="login-email" name="email" type="email" autoComplete="email" placeholder="you@example.com" required /></label>
+          <label htmlFor="login-password">Password<input id="login-password" name="password" type="password" autoComplete="current-password" required /></label>
+          <button className="button button-dark" type="submit">Sign in <span>→</span></button>
         </form>
 
-        <p className="account-note">Already have an account? <Link href="/login">Sign in</Link></p>
+        <p className="account-note">New to GK_Organic? <Link href="/account">Create an account</Link></p>
       </div>
     </section>
   );
 }
-import Link from "next/link";
