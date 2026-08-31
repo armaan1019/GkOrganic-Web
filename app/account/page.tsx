@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 
 /** Account entry point. Connect these controls to an auth provider when one is selected. */
 export default function AccountPage() {
@@ -31,4 +32,3 @@ export default function AccountPage() {
     </section>
   );
 }
-import Link from "next/link";
