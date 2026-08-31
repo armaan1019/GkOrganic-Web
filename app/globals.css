@@ -1018,37 +1018,38 @@ ACCOUNT
 ========================================================= */
 
 .account-page {
-align-items: center;
-background: var(--forest);
-display: flex;
-justify-content: center;
-min-height: calc(100vh - 78px);
-overflow: hidden;
-padding: 55px 24px;
-position: relative;
+  align-items: center;
+  background: var(--cream);
+  display: flex;
+  justify-content: center;
+  min-height: calc(100vh - 78px);
+  overflow: hidden;
+  padding: 55px 24px;
+  position: relative;
 }
 
 .account-background {
-inset: 0;
-opacity: 0.18;
-position: absolute;
+  inset: 0;
+  opacity: 0.22;
+  position: absolute;
 }
 
 .account-background img {
-filter: saturate(0.7) sepia(0.12);
-height: 100%;
-object-fit: cover;
-width: 100%;
+  filter: saturate(0.7) sepia(0.12);
+  height: 100%;
+  object-fit: cover;
+  width: 100%;
 }
 
 .account-card {
-background: rgba(238, 232, 220, 0.98);
-box-shadow: 0 24px 70px rgba(15, 29, 21, 0.16);
-max-width: 470px;
-padding: clamp(38px, 5vw, 60px);
-position: relative;
-width: 100%;
-z-index: 1;
+  background: #d8d0bf;
+  border: 1px solid rgba(15, 29, 21, 0.12);
+  box-shadow: 0 24px 70px rgba(15, 29, 21, 0.22);
+  max-width: 470px;
+  padding: clamp(38px, 5vw, 60px);
+  position: relative;
+  width: 100%;
+  z-index: 1;
 }
 
 .account-card .eyebrow {
