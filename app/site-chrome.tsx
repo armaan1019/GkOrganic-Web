@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
@@ -31,7 +32,16 @@ export function Header() {
 
   return (
     <header className="site-header">
-      <Link className="brand" href="/"><span>GK</span> Organic</Link>
+      <Link className="brand" href="/">
+        <Image
+          src="/images/gk-logo.JPG"
+          alt="GK Organic"
+          width={150}
+          height={60}
+          priority
+        />
+        <span>GK</span> Organic
+      </Link>
       <nav aria-label="Primary navigation">
         <Link
           href="/products"

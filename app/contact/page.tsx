@@ -1,6 +1,5 @@
 const socialLinks = [
   { label: "Instagram", handle: "@gk_organic", href: "#instagram", icon: "◎" },
-  { label: "Pinterest", handle: "@gk_organic", href: "#pinterest", icon: "P" },
   { label: "TikTok", handle: "@gk_organic", href: "#tiktok", icon: "♪" },
 ];
 

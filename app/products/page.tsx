@@ -1,4 +1,4 @@
-import { FeaturedProducts } from "../components";
+import { Products } from "../components";
 
 /** Shop page: presents category links and the current product collection. */
 export default function ProductsPage() {
@@ -14,7 +14,7 @@ export default function ProductsPage() {
         <nav aria-label="Product categories" className="product-filter">
           <span>All products</span><span>Hair oil</span><span>Lash oil</span><span>Eyebrow oil</span><span>Bamboo brush</span>
         </nav>
-        <FeaturedProducts />
+        <Products />
       </section>
     </>
   );
