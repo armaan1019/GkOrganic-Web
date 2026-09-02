@@ -1,8 +1,48 @@
+"use client"
+
 import Image from "next/image";
 import Link from "next/link";
+import { useState } from "react";
+import { useRouter } from "next/navigation";
+import { signUp } from "@/lib/auth";
 
 /** Account entry point. Connect these controls to an auth provider when one is selected. */
 export default function AccountPage() {
+  const router = useRouter();
+
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
+  const [message, setMessage] = useState("");
+  const [error, setError] = useState("");
+
+  const handleSignUp: React.ComponentProps<"form">["onSubmit"] = async (event) => {
+    event.preventDefault();
+
+    setIsLoading(true);
+    setMessage("");
+    setError("");
+
+    const { data, error } = await signUp(email, password);
+
+    if (error) {
+      setError(error.message);
+      setIsLoading(false);
+      return;
+    }
+
+    if (data.user && !data.session) {
+      setMessage(
+        "Account created! Please check your email to confirm your account."
+      );
+      setIsLoading(false);
+      return;
+    }
+
+    setIsLoading(false);
+    router.push("/");
+  };
+
   return (
     <section className="account-page">
       <div style={{ position: 'absolute', inset: 0, zIndex: -1 }}>
@@ -21,10 +61,28 @@ export default function AccountPage() {
 
         <div className="account-divider"><span>or use your email</span></div>
 
-        <form className="account-form">
-          <label htmlFor="account-email">Email address<input id="account-email" name="email" type="email" autoComplete="email" placeholder="you@example.com" required /></label>
-          <label htmlFor="account-password">Password<input id="account-password" name="password" type="password" autoComplete="new-password" placeholder="At least 8 characters" minLength={8} required /></label>
-          <button className="button button-dark" type="submit">Create account <span>→</span></button>
+        <form className="account-form" onSubmit={handleSignUp}>
+          <label htmlFor="account-email">Email address<input id="account-email" name="email" type="email" autoComplete="email" placeholder="you@example.com" value={email} onChange={(e) => setEmail(e.target.value)} required /></label>
+          <label htmlFor="account-password">Password<input id="account-password" name="password" type="password" autoComplete="new-password" placeholder="At least 8 characters" minLength={8} value={password} onChange={(e) => setPassword(e.target.value)} required /></label>
+          {error && (
+            <p role="alert" className="account-error">
+              {error}
+            </p>
+          )}
+
+          {message && (
+            <p role="status" className="account-success">
+              {message}
+            </p>
+          )}
+          <button
+            className="button button-dark"
+            type="submit"
+            disabled={isLoading}
+          >
+            {isLoading ? "Creating account..." : "Create account"}
+            {!isLoading && <span>→</span>}
+          </button>
         </form>
 
         <p className="account-note">Already have an account? <Link href="/login">Sign in</Link></p>

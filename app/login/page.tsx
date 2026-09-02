@@ -1,8 +1,38 @@
+"use client"
+
 import Image from "next/image";
 import Link from "next/link";
+import { useState } from "react";
+import { useRouter } from "next/navigation";
+import { signIn } from "@/lib/auth";
 
 /** Sign-in entry point. Connect these controls to an auth provider when one is selected. */
 export default function LoginPage() {
+  const router = useRouter();
+
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState("");
+
+  const handleSignIn: React.ComponentProps<"form">["onSubmit"] = async (event) => {
+    event.preventDefault();
+
+    setIsLoading(true);
+    setError("");
+
+    const { error } = await signIn(email, password);
+
+    if (error) {
+      setError(error.message);
+      setIsLoading(false);
+      return;
+    }
+
+    setIsLoading(false);
+    router.push("/");
+  };
+
   return (
     <section className="account-page">
       <div className="account-background">
@@ -48,7 +78,7 @@ export default function LoginPage() {
           <span>or use your email</span>
         </div>
 
-        <form className="account-form">
+        <form className="account-form" onSubmit={handleSignIn}>
           <label htmlFor="login-email">
             Email address
             <input
@@ -57,6 +87,8 @@ export default function LoginPage() {
               type="email"
               autoComplete="email"
               placeholder="you@example.com"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
               required
             />
           </label>
@@ -68,12 +100,25 @@ export default function LoginPage() {
               name="password"
               type="password"
               autoComplete="current-password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
               required
             />
           </label>
 
-          <button className="button button-dark" type="submit">
-            Sign in <span>→</span>
+          {error && (
+            <p role="alert" className="account-error">
+              {error}
+            </p>
+          )}
+
+          <button
+            className="button button-dark"
+            type="submit"
+            disabled={isLoading}
+          >
+            {isLoading ? "Signing in..." : "Sign in"}
+            {!isLoading && <span>→</span>}
           </button>
         </form>
 
