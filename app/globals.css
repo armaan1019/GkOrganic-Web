@@ -1,41 +1,29 @@
 @import "tailwindcss";
 
 /* =========================================================
-GK ORGANIC — SOFT GRAY / BLUSH / TAUPE DESIGN SYSTEM
+GK ORGANIC — EARTHY / BOTANICAL DESIGN SYSTEM
 ========================================================= */
 
 :root {
-  /* Backgrounds */
-  --background: #f6f3ef;
-  --surface: #ebe7e2;
-  --surface-warm: #ddd4cc;
+  --background: #eee8dc;
+  --surface: #e4dbc9;
+  --surface-warm: #d7c6ad;
 
-  /* Logo gray */
-  --gray: #b9b8b6;
-  --gray-dark: #6f706c;
-  --gray-soft: #d0cfcc;
+  --forest: #24382c;
+  --forest-soft: #3f5946;
+  --sage: #71806b;
 
-  /* Logo pink */
-  --rose: #d8b8b1;
-  --rose-dark: #c79d95;
-  --rose-soft: #ead8d4;
+  --walnut: #704f3a;
+  --clay: #9a6b4d;
 
-  /* Light brown / taupe */
-  --brown: #b89d88;
-  --brown-dark: #8f7664;
-  --brown-soft: #d7c5b7;
+  --cream: #f7f3ea;
+  --white: #fffdf8;
 
-  /* Text */
-  --text: #5f5d5a;
-  --text-light: #85827e;
+  --line: #c8bba5;
+  --line-dark: #536254;
 
-  /* Light neutrals */
-  --cream: #faf8f5;
-  --white: #fffdfb;
-
-  /* Borders */
-  --line: #d6d0ca;
-  --line-dark: #aaa49e;
+  --muted: #667064;
+  --muted-light: #d8ddd2;
 
   --font-sans: Arial, Helvetica, sans-serif;
   --font-serif: Georgia, "Times New Roman", serif;
@@ -52,7 +40,7 @@ html {
 body {
   margin: 0;
   background: var(--background);
-  color: var(--gray-dark);
+  color: var(--forest);
   font-family: var(--font-sans);
   font-size: 15px;
   line-height: 1.6;
@@ -94,7 +82,7 @@ h3 {
 }
 
 em {
-  color: var(--rose);
+  color: var(--walnut);
   font-style: italic;
   font-weight: 400;
 }
@@ -104,7 +92,7 @@ img {
 }
 
 ::selection {
-  background: var(--gray-dark);
+  background: var(--forest);
   color: var(--cream);
 }
 
@@ -131,7 +119,7 @@ SHARED LAYOUT
 }
 
 .eyebrow {
-  color: var(--gray-dark);
+  color: var(--forest-soft);
   font-size: 10px;
   font-weight: 700;
   letter-spacing: 0.18em;
@@ -150,7 +138,7 @@ SHARED LAYOUT
 }
 
 .heading-body {
-  color: var(--text-light);
+  color: var(--muted);
   margin: 24px auto 0;
   max-width: 470px;
 }
@@ -188,20 +176,20 @@ BUTTONS / LINKS
 }
 
 .button-dark {
-  background: var(--gray-dark);
+  background: var(--forest);
   color: var(--cream);
 }
 
 .button-dark:hover {
-  background: #8f8e8b;
+  background: #314b3a;
 }
 
 .button-outline {
-  border: 1px solid var(--gray-dark);
+  border: 1px solid var(--forest);
 }
 
 .button-outline:hover {
-  background: var(--gray-dark);
+  background: var(--forest);
   color: var(--cream);
 }
 
@@ -219,7 +207,7 @@ BUTTONS / LINKS
 }
 
 .text-link:hover {
-  color: var(--brown);
+  color: var(--walnut);
 }
 
 /* =========================================================
@@ -243,18 +231,18 @@ HEADER
   display: inline-flex;
   font-family: var(--font-serif);
   font-size: 21px;
-  gap: 8px;
+  gap: 5px;
   letter-spacing: -0.045em;
 }
 
 .brand img {
   height: 60px;
-  object-fit: contain;
   width: 60px;
+  object-fit: contain;
 }
 
 .brand span {
-  color: var(--brown);
+  color: var(--walnut);
   font-family: cursive;
   font-size: 28px;
   font-style: italic;
@@ -280,11 +268,11 @@ HEADER
 .site-header>nav a:hover,
 .account-menu summary:hover,
 .account-link:hover {
-  color: var(--brown);
+  color: var(--walnut);
 }
 
 .site-header>nav a.active {
-  background: rgba(111, 112, 108, 0.08);
+  background: rgba(36, 56, 44, 0.07);
 }
 
 .account-menu {
@@ -314,7 +302,7 @@ HEADER
 .account-menu-panel {
   background: var(--cream);
   border: 1px solid var(--line);
-  box-shadow: 0 18px 40px rgba(111, 112, 108, 0.12);
+  box-shadow: 0 18px 40px rgba(36, 56, 44, 0.12);
   min-width: 200px;
   padding: 18px;
   position: absolute;
@@ -347,7 +335,7 @@ FOOTER
 ========================================================= */
 
 .site-footer {
-  background: var(--gray-dark);
+  background: var(--forest);
   color: var(--cream);
   display: grid;
   gap: 40px;
@@ -361,7 +349,7 @@ FOOTER
 
 .site-footer>div>p,
 .copyright {
-  color: #cbc9c6;
+  color: #cbd2c8;
   font-size: 12px;
 }
 
@@ -382,7 +370,7 @@ FOOTER
 }
 
 .footer-links a:hover {
-  color: var(--brown-soft);
+  color: #d5bd9e;
 }
 
 .copyright {
@@ -410,12 +398,12 @@ HOME — HERO
 }
 
 .hero h1 {
-  color: var(--gray-dark);
+  color: var(--forest);
   font-size: clamp(56px, 6.2vw, 92px);
 }
 
 .hero-text {
-  color: var(--text-light);
+  color: var(--muted);
   font-size: 15px;
   margin: 30px 0;
   max-width: 400px;
@@ -430,13 +418,13 @@ HOME — HERO
 .hero-art {
   background:
     radial-gradient(circle at 25% 18%, rgba(207, 186, 145, 0.7) 0 9%, transparent 9.2%),
-    var(--gray);
+    var(--sage);
   min-height: 680px;
   position: relative;
 }
 
 .sun-disc {
-  background: var(--brown);
+  background: #d0b47c;
   border-radius: 50%;
   height: 220px;
   left: 17%;
@@ -484,7 +472,7 @@ HOME — HERO
 
 .value-strip {
   align-items: center;
-  background: var(--gray-dark);
+  background: var(--forest);
   color: var(--cream);
   display: flex;
   font-size: 9px;
@@ -557,7 +545,7 @@ Designed for differently proportioned product photos.
 
 .category-card::after {
   background: linear-gradient(transparent 40%,
-      rgba(95, 93, 90, 0.58));
+      rgba(20, 37, 27, 0.66));
   content: "";
   inset: 0;
   position: absolute;
@@ -621,7 +609,7 @@ HOME — RITUAL / STORY
 }
 
 .ritual-copy>p:not(.eyebrow) {
-  color: var(--text-light);
+  color: var(--muted);
   font-size: 15px;
   margin: 27px 0 31px;
   max-width: 420px;
@@ -666,15 +654,15 @@ HOME — FEATURED PRODUCTS
 }
 
 .olive {
-  background: #d8d9d4;
+  background: #d5ddd0;
 }
 
 .honey {
-  background: #e6d6c6;
+  background: #e5d8b9;
 }
 
 .clay {
-  background: #d8c5bb;
+  background: #d8c0ad;
 }
 
 .bag {
@@ -705,7 +693,7 @@ HOME — FEATURED PRODUCTS
 }
 
 .product-meta p {
-  color: var(--text-light);
+  color: var(--muted);
   font-size: 11px;
   margin-top: 3px;
 }
@@ -716,8 +704,8 @@ NEWSLETTER
 
 .newsletter {
   align-items: center;
-  background: var(--surface-warm);
-  color: var(--gray-dark);
+  background: var(--forest-soft);
+  color: var(--cream);
   display: grid;
   gap: 40px;
   grid-template-columns: 1.1fr 1fr 0.9fr;
@@ -725,21 +713,20 @@ NEWSLETTER
 }
 
 .newsletter .eyebrow {
-  color: var(--gray-dark);
+  color: #d8dfd3;
 }
 
 .newsletter h2 {
-  color: var(--gray-dark);
   font-size: clamp(40px, 4vw, 58px);
 }
 
 .newsletter em {
-  color: var(--rose);
+  color: #dcc395;
 }
 
 .newsletter form {
   align-items: center;
-  border-bottom: 1px solid var(--gray);
+  border-bottom: 1px solid rgba(247, 243, 234, 0.65);
   display: flex;
   height: 52px;
 }
@@ -747,27 +734,27 @@ NEWSLETTER
 .newsletter input {
   background: transparent;
   border: 0;
-  color: var(--gray-dark);
+  color: var(--cream);
   flex: 1;
   outline: 0;
   padding: 8px 0;
 }
 
 .newsletter input::placeholder,
-.newsletter > p {
-  color: var(--text-light);
+.newsletter>p {
+  color: #d6ded3;
 }
 
 .newsletter button {
   background: transparent;
   border: 0;
-  color: var(--gray-dark);
+  color: var(--cream);
   cursor: pointer;
   font-size: 25px;
   padding: 8px;
 }
 
-.newsletter > p {
+.newsletter>p {
   font-size: 12px;
   line-height: 1.4;
   max-width: 180px;
@@ -778,7 +765,7 @@ PAGE HEROES
 ========================================================= */
 
 .page-hero {
-  background: var(--gray-dark);
+  background: var(--forest);
   color: var(--cream);
   padding: 110px 24px 105px;
   text-align: center;
@@ -790,7 +777,7 @@ PAGE HEROES
 }
 
 .page-hero .eyebrow {
-  color: #d2cfcc;
+  color: #d3ddd0;
 }
 
 .page-hero em,
@@ -799,7 +786,7 @@ PAGE HEROES
 }
 
 .page-hero>p:last-child {
-  color: #d3d0cd;
+  color: #d8dfd6;
   margin: 26px auto 0;
   max-width: 500px;
 }
@@ -824,12 +811,12 @@ PAGE HEROES
 }
 
 .product-filter span {
-  color: var(--text-light);
+  color: var(--muted);
 }
 
 .product-filter span:first-child {
-  border-bottom: 1px solid var(--gray-dark);
-  color: var(--gray-dark);
+  border-bottom: 1px solid var(--forest);
+  color: var(--forest);
   padding-bottom: 4px;
 }
 
@@ -839,7 +826,7 @@ ABOUT
 
 .about-hero {
   align-items: center;
-  background: var(--gray-dark);
+  background: var(--forest);
   color: var(--cream);
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -852,7 +839,7 @@ ABOUT
 }
 
 .about-hero .eyebrow {
-  color: #d2cfcc;
+  color: #d3ddd0;
 }
 
 .about-image {
@@ -879,7 +866,7 @@ ABOUT
 }
 
 .story div>p {
-  color: var(--text-light);
+  color: var(--muted);
   font-size: 15px;
   margin: 27px 0 32px;
   max-width: 580px;
@@ -899,7 +886,7 @@ ABOUT
 }
 
 .principles span {
-  color: var(--brown);
+  color: var(--walnut);
   font-size: 11px;
 }
 
@@ -909,7 +896,7 @@ ABOUT
 }
 
 .principles p {
-  color: var(--text-light);
+  color: var(--muted);
   max-width: 270px;
 }
 
@@ -930,7 +917,7 @@ CONTACT
 }
 
 .social-intro {
-  color: var(--text-light);
+  color: var(--muted);
   margin-top: 12px;
   max-width: 330px;
 }
@@ -952,7 +939,7 @@ CONTACT
 }
 
 .social-link:hover {
-  color: var(--brown);
+  color: var(--walnut);
 }
 
 .social-icon {
@@ -976,7 +963,7 @@ CONTACT
 }
 
 .social-link small {
-  color: var(--text-light);
+  color: var(--muted);
   font-size: 10px;
   margin-top: 2px;
 }
@@ -988,7 +975,7 @@ CONTACT
 }
 
 label {
-  color: var(--gray-dark);
+  color: var(--forest-soft);
   display: flex;
   flex-direction: column;
   font-size: 11px;
@@ -1000,7 +987,7 @@ textarea {
   background: transparent;
   border: 0;
   border-bottom: 1px solid var(--line);
-  color: var(--gray-dark);
+  color: var(--forest);
   outline: 0;
   padding: 8px 0;
   resize: vertical;
@@ -1014,7 +1001,7 @@ textarea {
 
 input:focus,
 textarea:focus {
-  border-color: var(--gray-dark);
+  border-color: var(--forest-soft);
 }
 
 .form-row {
@@ -1060,8 +1047,8 @@ ACCOUNT
 
 .account-card {
   background: #d8d0bf;
-  border: 1px solid rgba(95, 93, 90, 0.12);
-  box-shadow: 0 24px 70px rgba(95, 93, 90, 0.18);
+  border: 1px solid rgba(15, 29, 21, 0.12);
+  box-shadow: 0 24px 70px rgba(15, 29, 21, 0.22);
   max-width: 470px;
   padding: clamp(38px, 5vw, 60px);
   position: relative;
@@ -1070,7 +1057,7 @@ ACCOUNT
 }
 
 .account-card .eyebrow {
-  color: var(--gray-dark);
+  color: var(--forest-soft);
 }
 
 .account-card h1 {
@@ -1078,7 +1065,7 @@ ACCOUNT
 }
 
 .account-subtitle {
-  color: var(--text-light);
+  color: var(--muted);
   margin: 12px 0 31px;
 }
 
@@ -1086,7 +1073,7 @@ ACCOUNT
   align-items: center;
   background: var(--cream);
   border: 1px solid var(--line);
-  color: var(--gray-dark);
+  color: var(--forest);
   cursor: pointer;
   display: flex;
   font-size: 12px;
@@ -1101,7 +1088,7 @@ ACCOUNT
 
 .google-button:hover {
   background: var(--white);
-  border-color: #aaa49e;
+  border-color: #aaa08e;
 }
 
 .google-button svg {
@@ -1111,7 +1098,7 @@ ACCOUNT
 
 .account-divider {
   align-items: center;
-  color: var(--text-light);
+  color: var(--muted);
   display: flex;
   font-size: 10px;
   gap: 13px;
@@ -1143,7 +1130,7 @@ ACCOUNT
 }
 
 .account-note {
-  color: var(--text-light);
+  color: var(--muted);
   font-size: 11px;
   line-height: 1.55;
   margin-top: 24px;
