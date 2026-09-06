@@ -258,7 +258,6 @@ HEADER
 }
 
 .site-header>nav a,
-.account-menu summary,
 .account-link {
   transition:
     color 0.2s ease,
@@ -266,7 +265,6 @@ HEADER
 }
 
 .site-header>nav a:hover,
-.account-menu summary:hover,
 .account-link:hover {
   color: var(--walnut);
 }
@@ -279,24 +277,26 @@ HEADER
   position: relative;
 }
 
-.account-menu summary,
 .account-link {
   align-items: center;
+  background: none;
+  border: none;
+  color: var(--forest);
   cursor: pointer;
   display: inline-flex;
+  flex-shrink: 0;
+  font-family: inherit;
   font-size: 12px;
   gap: 8px;
-  list-style: none;
+  padding: 0;
 }
 
-.account-menu summary::-webkit-details-marker {
-  display: none;
-}
-
-.account-menu summary svg,
 .account-link svg {
-  height: 20px;
-  width: 20px;
+  display: block;
+  flex-shrink: 0;
+  height: 22px;
+  width: 22px;
+  stroke: currentColor;
 }
 
 .account-menu-panel {
@@ -316,13 +316,29 @@ HEADER
   margin-bottom: 14px;
 }
 
-.account-menu-panel a {
+.account-menu-panel a,
+.account-menu-panel button {
   align-items: center;
+  border: 0;
   border-top: 1px solid var(--line);
+  background: none;
+  color: inherit;
   display: flex;
+  font-family: inherit;
   font-size: 12px;
   justify-content: space-between;
-  padding-top: 13px;
+  padding: 13px 0 0;
+  width: 100%;
+}
+
+.account-menu-panel button {
+  cursor: pointer;
+  margin-top: 13px;
+}
+
+.account-menu-panel a:hover,
+.account-menu-panel button:hover {
+  color: var(--walnut);
 }
 
 .account-menu-panel a span {
@@ -1186,12 +1202,10 @@ RESPONSIVE
     gap: 12px;
   }
 
-  .account-menu summary span,
   .account-link span {
     display: none;
   }
 
-  .account-menu summary svg,
   .account-link svg {
     height: 22px;
     width: 22px;

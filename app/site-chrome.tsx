@@ -1,15 +1,15 @@
 "use client";
 
 import Image from "next/image";
+import { useEffect, useState, useRef } from "react";
+import { supabase } from "@/lib/supabase";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { signOut } from "@/lib/auth";
 
 type SignedInUser = { name: string };
 
-function getCurrentUser(): SignedInUser | null {
-  // Replace this with the session lookup once authentication is connected.
-  return null;
-}
+
 
 function AccountIcon() {
   return (
@@ -22,13 +22,78 @@ function AccountIcon() {
 
 /** Persistent site navigation displayed above every page. */
 export function Header() {
-  const user = getCurrentUser();
   const pathname = usePathname();
+  const [user, setUser] = useState<SignedInUser | null>(null);
+  const [accountOpen, setAccountOpen] = useState(false);
+  const accountMenuRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    async function loadUser() {
+      const {
+        data: { user },
+      } = await supabase.auth.getUser();
+
+      if (user) {
+        setUser({
+          name:
+            user.user_metadata?.full_name ||
+            user.user_metadata?.name ||
+            user.email?.split("@")[0] ||
+            "there",
+        });
+      } else {
+        setUser(null);
+      }
+    }
+
+    loadUser();
+
+    const {
+      data: { subscription },
+    } = supabase.auth.onAuthStateChange((_event, session) => {
+      if (session?.user) {
+        setUser({
+          name:
+            session.user.user_metadata?.full_name ||
+            session.user.user_metadata?.name ||
+            session.user.email?.split("@")[0] ||
+            "there",
+        });
+      } else {
+        setUser(null);
+      }
+    });
+
+    return () => {
+      subscription.unsubscribe();
+    };
+  }, []);
+
+  useEffect(() => {
+    function handleClickOutside(event: MouseEvent) {
+      if (
+        accountMenuRef.current && !accountMenuRef.current.contains(event.target as Node)
+      ) {
+        setAccountOpen(false);
+      }
+    }
+
+    document.addEventListener("mousedown", handleClickOutside);
+
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    }
+  }, []);
 
   const isActive = (href: string): boolean => {
     if (href === "/") return pathname === "/";
     return pathname.startsWith(href);
   };
+
+  const handleLogout = async () => {
+    await signOut();
+    setAccountOpen(false);
+  }
 
   return (
     <header className="site-header">
@@ -78,13 +143,34 @@ export function Header() {
         </Link>
       </nav>
       {user ? (
-        <details className="account-menu">
-          <summary aria-label="Open account menu"><AccountIcon /><span>Account</span></summary>
-          <div className="account-menu-panel">
-            <p>Hello, <strong>{user.name}</strong></p>
-            <Link href="/account">View account <span>→</span></Link>
-          </div>
-        </details>
+        <div className="account-menu" ref={accountMenuRef}>
+          <button
+            type="button"
+            className="account-link"
+            aria-label="Open account menu"
+            aria-expanded={accountOpen}
+            onClick={() => setAccountOpen((open) => !open)}
+          >
+            <AccountIcon />
+            <span>Account</span>
+          </button>
+
+          {accountOpen && (
+            <div className="account-menu-panel">
+              <p>
+                Hello, <strong>{user.name}</strong>
+              </p>
+
+              <Link href="/account" onClick={() => setAccountOpen(false)}>
+                View account <span>→</span>
+              </Link>
+
+              <button type="button" onClick={handleLogout}>
+                Log out
+              </button>
+            </div>
+          )}
+        </div>
       ) : (
         <Link className="account-link" href="/account" aria-label="Create an account"><AccountIcon /><span>Account</span></Link>
       )}
