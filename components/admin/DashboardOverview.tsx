@@ -5,6 +5,7 @@ import { ProductTable } from "@/components/admin/ProductTable";
 import { getProducts } from "@/lib/products";
 import { useEffect, useState } from "react";
 import type { Product } from "@/lib/types";
+import Link from "next/link";
 
 export function DashboardOverview() {
   const [products, setProducts] = useState<Product[]>([]);
@@ -49,10 +50,6 @@ export function DashboardOverview() {
             Manage your products, inventory, and store content from here.
           </p>
         </div>
-
-        <button type="button" className="admin-primary-button">
-          + Add Product
-        </button>
       </div>
 
       <div className="admin-stat-grid">

@@ -97,8 +97,223 @@ img {
 }
 
 /* =========================
+   ADD PRODUCT FORM
+   ========================= */
+
+.admin-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.admin-form-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 22px;
+  padding: 24px;
+}
+
+.admin-form-field {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.admin-form-field-full {
+  grid-column: 1 / -1;
+}
+
+.admin-form-field label,
+.admin-form-toggle label {
+  color: #4b433d;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.admin-form-field input,
+.admin-form-field select,
+.admin-form-field textarea {
+  width: 100%;
+  border: 1px solid #dfd5cd;
+  border-radius: 9px;
+  background: #fffdfb;
+  color: #3f3934;
+  padding: 12px 13px;
+  font: inherit;
+  font-size: 13px;
+  outline: none;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.admin-form-field input {
+  height: 44px;
+}
+
+.admin-form-field select {
+  height: 44px;
+  cursor: pointer;
+}
+
+.admin-form-field textarea {
+  min-height: 140px;
+  resize: vertical;
+  line-height: 1.6;
+}
+
+.admin-form-field input::placeholder,
+.admin-form-field textarea::placeholder {
+  color: #a2958c;
+}
+
+.admin-form-field input:focus,
+.admin-form-field select:focus,
+.admin-form-field textarea:focus {
+  border-color: #c49a9c;
+  box-shadow: 0 0 0 3px rgba(169, 116, 119, 0.1);
+}
+
+/* Active product */
+
+.admin-form-toggle {
+  margin: 0 24px 24px;
+  padding-top: 20px;
+  border-top: 1px solid #ebe3dc;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.admin-form-toggle > div {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.admin-form-toggle label {
+  font-size: 13px;
+}
+
+.admin-form-toggle p {
+  margin: 0;
+  color: #8a7d74;
+  font-size: 12px;
+  line-height: 1.5;
+}
+
+.admin-form-toggle input {
+  width: 19px;
+  height: 19px;
+  margin: 0;
+  accent-color: #a97477;
+  cursor: pointer;
+}
+
+/* Image upload */
+
+.admin-image-upload {
+  margin: 24px;
+  border: 1px dashed #d9cdc4;
+  border-radius: 11px;
+  background: #f8f5f1;
+  padding: 34px 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: border-color 0.2s ease, background 0.2s ease;
+}
+
+.admin-image-upload:hover {
+  border-color: #c3a0a0;
+  background: #f6f1ed;
+}
+
+.admin-image-upload input {
+  width: 100%;
+  color: #625852;
+  font-size: 13px;
+}
+
+.admin-image-upload input::file-selector-button {
+  border: 1px solid #ddd3ca;
+  border-radius: 7px;
+  background: #fbf9f6;
+  color: #554c46;
+  padding: 9px 13px;
+  margin-right: 12px;
+  font: inherit;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+/* Form actions */
+
+.admin-form-actions {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 10px;
+}
+
+.admin-secondary-button {
+  min-height: 42px;
+  padding: 0 17px;
+  border: 1px solid #ddd3ca;
+  border-radius: 9px;
+  background: transparent;
+  color: #5d544e;
+  font: inherit;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s ease, border-color 0.2s ease;
+}
+
+.admin-secondary-button:hover {
+  background: #f2ece6;
+  border-color: #d4c9c0;
+}
+
+/* Mobile */
+
+@media (max-width: 700px) {
+  .admin-form-grid {
+    grid-template-columns: 1fr;
+    padding: 20px;
+  }
+
+  .admin-form-field-full {
+    grid-column: auto;
+  }
+
+  .admin-form-toggle {
+    margin: 0 20px 20px;
+  }
+
+  .admin-image-upload {
+    margin: 20px;
+  }
+
+  .admin-form-actions {
+    flex-direction: column-reverse;
+    align-items: stretch;
+  }
+
+  .admin-form-actions .admin-primary-button,
+  .admin-form-actions .admin-secondary-button {
+    width: 100%;
+  }
+}
+
+/* =========================
    ADMIN
 ========================= */
+
+.admin-page-heading {
+  padding-left: 4px;
+}
 
 .admin-loading {
   min-height: 100vh;
