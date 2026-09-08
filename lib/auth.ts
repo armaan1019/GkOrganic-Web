@@ -24,7 +24,6 @@ export async function isAdmin() {
   } = await supabase.auth.getUser();
 
   if (!user) {
-    console.log("No authenticated user");
     return false;
   }
 
@@ -35,10 +34,6 @@ export async function isAdmin() {
     .select("role")
     .eq("id", user.id)
     .single();
-
-  console.log("Profile:", profile);
-  console.log("Profile error:", error);
-  console.log("Profile error JSON:", JSON.stringify(error, null, 2));
 
   if (error || !profile) {
     return false;

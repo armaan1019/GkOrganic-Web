@@ -1,13 +1,23 @@
-import { useState } from "react";
+"use client";
+
+import { useEffect, useState } from "react";
 import {ProductTable} from "@/components/admin/ProductTable";
 import type { Product } from "@/lib/types";
-
-const products: Product[] = [
-
-]
+import { getProducts } from "@/lib/products"; 
 
 export function ProductsSection() {
+  const [products, setProducts] = useState<Product[]>([]);
+  const [loading, setLoading] = useState(true);
   const [search, setSearch] = useState("");
+
+  useEffect(() => {
+    async function fetchProducts() {
+      const products = await getProducts();
+      setProducts(products);
+    }
+
+    fetchProducts;
+  }, []);
 
   const filteredProducts = products.filter((product) =>
     product.name.toLowerCase().includes(search.toLowerCase())

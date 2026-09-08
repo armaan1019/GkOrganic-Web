@@ -10,7 +10,7 @@ export default function AdminPage() {
   const router = useRouter();
 
   const [activeTab, setActiveTab] = useState<"products" | "dashboard">(
-    "products"
+    "dashboard"
   );
 
   const [checkingAccess, setCheckingAccess] = useState(true);
@@ -20,11 +20,9 @@ export default function AdminPage() {
     async function checkAdminAccess() {
       const admin = await isAdmin();
 
-      console.log("is Admin: ", admin);
-
-      if(!admin) {
-          setCheckingAccess(false);
-          return;
+      if (!admin) {
+        router.replace("/");
+        return;
       }
 
       setAuthorized(true);
