@@ -7,3 +7,9 @@ export type Product = {
   quantity: number;
   isActive: boolean;
 };
+
+export type Category = {
+  id: string;
+  name: string;
+  slug: string;
+}

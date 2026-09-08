@@ -1,6 +1,8 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { addProduct, getCategories } from "@/lib/products";
+import type { Category } from "@/lib/types";
 
 export function AddProductForm() {
   const [name, setName] = useState("");
@@ -9,18 +11,41 @@ export function AddProductForm() {
   const [price, setPrice] = useState("");
   const [quantity, setQuantity] = useState("");
   const [isActive, setIsActive] = useState(true);
+  const [categories, setCategories] = useState<Category[]>([]);
+  const [loadingCategories, setLoadingCategories] = useState(true);
 
-  function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
+  useEffect(() => {
+    async function fetchCategories() {
+      try {
+        const categories = await getCategories();
+        setCategories(categories);
+      } catch (error) {
+        console.error("Error fetching categories:", error);
+      } finally {
+        setLoadingCategories(false);
+      }
+    }
+
+    fetchCategories();
+  }, []);
+
+  async function handleSubmit(event: React.SubmitEvent<HTMLFormElement>) {
     event.preventDefault();
 
-    console.log({
-      name,
-      details,
-      categoryId,
-      price: Number(price),
-      quantity: Number(quantity),
-      isActive,
-    });
+    try {
+      const product = await addProduct({
+        name,
+        details,
+        categoryId,
+        price: Number(price),
+        quantity: Number(quantity),
+        isActive,
+      });
+
+      console.log("Product added:", product);
+    } catch (error) {
+      console.error("Error adding product:", error);
+    }
   }
 
   return (
@@ -53,8 +78,17 @@ export function AddProductForm() {
               value={categoryId}
               onChange={(event) => setCategoryId(event.target.value)}
               required
+              disabled={loadingCategories}
             >
-              <option value="">Select a category</option>
+              <option value="">
+                {loadingCategories ? "Loading categories..." : "Select a category"}
+              </option>
+
+              {categories.map((category) => (
+                <option key={category.id} value={category.id}>
+                  {category.name}
+                </option>
+              ))}
             </select>
           </div>
 
