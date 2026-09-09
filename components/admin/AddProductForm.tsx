@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { addProduct, getCategories } from "@/lib/products";
+import { uploadProductImages, addProduct, getCategories } from "@/lib/products";
 import type { Category } from "@/lib/types";
 
 export function AddProductForm() {
@@ -13,6 +13,8 @@ export function AddProductForm() {
   const [isActive, setIsActive] = useState(true);
   const [categories, setCategories] = useState<Category[]>([]);
   const [loadingCategories, setLoadingCategories] = useState(true);
+  const [images, setImages] = useState<File[]>([]);
+  const [submitting, setSubmitting] = useState(false);
 
   useEffect(() => {
     async function fetchCategories() {
@@ -29,10 +31,26 @@ export function AddProductForm() {
     fetchCategories();
   }, []);
 
+  function handleSetPrimary(index: number) {
+    if (index === 0) return;
+
+    setImages((currentImages) => {
+      const selectedImage = currentImages[index];
+
+      return [
+        selectedImage,
+        ...currentImages.slice(0, index),
+        ...currentImages.slice(index + 1),
+      ]
+    })
+  }
+
   async function handleSubmit(event: React.SubmitEvent<HTMLFormElement>) {
     event.preventDefault();
 
     try {
+      setSubmitting(true);
+      
       const product = await addProduct({
         name,
         details,
@@ -42,9 +60,23 @@ export function AddProductForm() {
         isActive,
       });
 
+      if (images.length > 0) {
+        await uploadProductImages(product.id, images);
+      }
+
       console.log("Product added:", product);
+
+      setName("");
+      setDetails("");
+      setCategoryId("");
+      setPrice("");
+      setQuantity("");
+      setIsActive(true);
+      setImages([]);
     } catch (error) {
       console.error("Error adding product:", error);
+    } finally {
+      setSubmitting(false);
     }
   }
 
@@ -162,13 +194,54 @@ export function AddProductForm() {
             type="file"
             accept="image/*"
             multiple
+            onChange={(event) => {
+              const files = Array.from(event.target.files ?? []);
+              setImages(files);
+            }}
           />
+
+          {images.length > 0 && (
+            <div className="admin-image-preview-grid">
+              {images.map((image, index) => (
+                <div
+                  key={`${image.name}-${index}`}
+                  className={`admin-image-preview ${index === 0 ? "admin-image-preview-primary" : ""
+                    }`}
+                >
+                  <img
+                    src={URL.createObjectURL(image)}
+                    alt={`Product image ${index + 1}`}
+                  />
+
+                  <div className="admin-image-preview-info">
+                    {index === 0 ? (
+                      <span className="admin-image-primary-label">
+                        Primary Image
+                      </span>
+                    ) : (
+                      <button
+                        type="button"
+                        className="admin-image-primary-button"
+                        onClick={() => handleSetPrimary(index)}
+                      >
+                        Set as primary
+                      </button>
+                    )}
+
+                    <span className="admin-image-name">
+                      {image.name}
+                    </span>
+                  </div>
+                </div>
+              ))}
+            </div>
+          )}
         </div>
       </div>
 
       <div className="admin-form-actions">
-        <button type="submit" className="admin-primary-button">
-          Add Product
+        <button type="submit" className="admin-primary-button" disabled={submitting}>
+          {submitting ? "Adding Product..." : "Add Product"}
         </button>
       </div>
     </form>

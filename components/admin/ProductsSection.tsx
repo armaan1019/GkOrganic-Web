@@ -2,12 +2,12 @@
 
 import { useEffect, useState } from "react";
 import { ProductTable } from "@/components/admin/ProductTable";
-import type { Product } from "@/lib/types";
 import { getProducts } from "@/lib/products";
 import { AddProductForm } from "@/components/admin/AddProductForm";
+import type { ProductWithImages } from "@/lib/products";
 
 export function ProductsSection() {
-  const [products, setProducts] = useState<Product[]>([]);
+  const [products, setProducts] = useState<ProductWithImages[]>([]);
   const [loading, setLoading] = useState(true);
   const [search, setSearch] = useState("");
   const [addingProduct, setAddingProduct] = useState(false);

@@ -2,13 +2,11 @@
 
 import { StatCard } from "@/components/admin/StatCard";
 import { ProductTable } from "@/components/admin/ProductTable";
-import { getProducts } from "@/lib/products";
+import { getProducts, type ProductWithImages } from "@/lib/products";
 import { useEffect, useState } from "react";
-import type { Product } from "@/lib/types";
-import Link from "next/link";
 
 export function DashboardOverview() {
-  const [products, setProducts] = useState<Product[]>([]);
+  const [products, setProducts] = useState<ProductWithImages[]>([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {

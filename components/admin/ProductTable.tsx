@@ -1,13 +1,9 @@
-import type { Product } from "@/lib/types";
-
-const products: Product[] = [
-  
-]
+import type { ProductWithImages } from "@/lib/products";
 
 export function ProductTable({
-  products: tableProducts = products,
+  products: tableProducts,
 }: {
-  products?: Product[];
+  products: ProductWithImages[];
 }) {
   return (
     <>
@@ -25,7 +21,13 @@ export function ProductTable({
           <div className="admin-table-row" key={product.id}>
             <div className="admin-product-cell">
               <div className="admin-product-image">
-                <img src={product.image} alt={product.name} />
+                {product.image ? (
+                  <img src={product.image} alt={product.name} />
+                ) : (
+                  <div className="admin-product-image-placeholder">
+                    No image
+                  </div>
+                )}
               </div>
 
               <div>
@@ -36,7 +38,7 @@ export function ProductTable({
               </div>
             </div>
 
-            <div className="admin-muted">{product.category}</div>
+            <div className="admin-muted">{product.categoryName}</div>
 
             <div>
               <span
@@ -44,8 +46,8 @@ export function ProductTable({
                   product.quantity === 0
                     ? "inventory-danger"
                     : product.quantity <= 5
-                    ? "inventory-warning"
-                    : "admin-muted"
+                      ? "inventory-warning"
+                      : "admin-muted"
                 }
               >
                 {product.quantity} in stock
@@ -58,9 +60,8 @@ export function ProductTable({
 
             <div>
               <span
-                className={`status-pill ${
-                  product.isActive ? "status-active" : "status-hidden"
-                }`}
+                className={`status-pill ${product.isActive ? "status-active" : "status-hidden"
+                  }`}
               >
                 <span />
                 {product.isActive ? "Active" : "Hidden"}
@@ -87,21 +88,26 @@ export function ProductTable({
           <article className="admin-mobile-card" key={product.id}>
             <div className="admin-mobile-card-top">
               <div className="admin-product-image">
-                <img src={product.image} alt={product.name} />
+                {product.image ? (
+                  <img src={product.image} alt={product.name} />
+                ) : (
+                  <div className="admin-product-image-placeholder">
+                    No image
+                  </div>
+                )}
               </div>
 
               <div className="admin-mobile-product-info">
                 <div className="admin-product-name">{product.name}</div>
-                <div className="admin-muted">{product.category}</div>
+                <div className="admin-muted">{product.categoryName}</div>
                 <div className="admin-product-images">
                   {product.imageCount} images
                 </div>
               </div>
 
               <span
-                className={`status-pill ${
-                  product.isActive ? "status-active" : "status-hidden"
-                }`}
+                className={`status-pill ${product.isActive ? "status-active" : "status-hidden"
+                  }`}
               >
                 <span />
                 {product.isActive ? "Active" : "Hidden"}
