@@ -33,7 +33,14 @@ export async function getProducts(): Promise<ProductWithImages[]> {
     );
 
     return {
-      ...product,
+      id: product.id,
+      name: product.name,
+      details: product.details,
+      categoryId: product.category_id,
+      price: product.price,
+      quantity: product.quantity,
+      isActive: product.is_active,
+      
       image: images[0]?.image_url ?? null,
       imageCount: images.length,
       categoryName: product.categories?.name ?? "Uncategorized",
