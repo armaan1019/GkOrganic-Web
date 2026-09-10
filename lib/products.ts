@@ -3,6 +3,7 @@ import type { Product, Category } from "@/lib/types";
 
 export type ProductWithImages = Product & {
   image: string | null;
+  images: string[];
   imageCount: number;
   categoryName: string;
 };
@@ -42,10 +43,58 @@ export async function getProducts(): Promise<ProductWithImages[]> {
       isActive: product.is_active,
       
       image: images[0]?.image_url ?? null,
+      images: images.map((image) => image.image_url),
       imageCount: images.length,
       categoryName: product.categories?.name ?? "Uncategorized",
     };
   });
+}
+
+export async function getProductById(
+  id: string
+): Promise<ProductWithImages | null> {
+  const { data, error } = await supabase
+    .from("products")
+    .select(`
+      *,
+      product_images (
+        image_url,
+        display_order
+      ),
+      categories (
+        name
+      )
+    `)
+    .eq("id", id)
+    .maybeSingle();
+
+  if (error) {
+    console.error("Error fetching product:", error);
+    throw error;
+  }
+
+  if (!data) {
+    return null;
+  }
+
+  const images = [...(data.product_images ?? [])].sort(
+    (a, b) => a.display_order - b.display_order
+  );
+
+  return {
+    id: data.id,
+    name: data.name,
+    details: data.details,
+    categoryId: data.category_id,
+    price: data.price,
+    quantity: data.quantity,
+    isActive: data.is_active,
+
+    image: images[0]?.image_url ?? null,
+    images: images.map((image) => image.image_url),
+    imageCount: images.length,
+    categoryName: data.categories?.name ?? "Uncategorized",
+  };
 }
 
 export async function addProduct(product: {

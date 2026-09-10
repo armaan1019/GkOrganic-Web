@@ -50,7 +50,7 @@ export function AddProductForm() {
 
     try {
       setSubmitting(true);
-      
+
       const product = await addProduct({
         name,
         details,
@@ -75,6 +75,12 @@ export function AddProductForm() {
       setImages([]);
     } catch (error) {
       console.error("Error adding product:", error);
+      console.error("Error details:", {
+        message: (error as any)?.message,
+        code: (error as any)?.code,
+        details: (error as any)?.details,
+        hint: (error as any)?.hint,
+      });
     } finally {
       setSubmitting(false);
     }

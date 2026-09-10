@@ -16,7 +16,9 @@ const collectionImages = [
 
 /** Home page: introduces the brand, collection, care philosophy, and featured products. */
 export async function HomePage() {
-  const products = await getProducts();
+  const products = (await getProducts()).filter(
+    (product) => product.isActive
+  );
 
   return (
     <>

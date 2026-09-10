@@ -3,7 +3,9 @@ import { getProducts } from "@/lib/products";
 
 /** Shop page: presents category links and the current product collection. */
 export async function ProductsPage() {
-  const products = await getProducts();
+  const products = (await getProducts()).filter(
+    (product) => product.isActive
+  );
 
   return (
     <>
