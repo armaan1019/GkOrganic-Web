@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { FeaturedProducts, Newsletter, SectionHeading } from "./components";
+import { getProducts } from "@/lib/products";
 
 const collectionImages = [
   {
@@ -14,7 +15,9 @@ const collectionImages = [
 ];
 
 /** Home page: introduces the brand, collection, care philosophy, and featured products. */
-export default function HomePage() {
+export async function HomePage() {
+  const products = await getProducts();
+
   return (
     <>
       <section className="hero">
@@ -143,7 +146,7 @@ export default function HomePage() {
           }
         />
 
-        <FeaturedProducts />
+        <FeaturedProducts items={products} />
 
         <div className="center">
           <Link className="text-link" href="/products">
@@ -156,3 +159,5 @@ export default function HomePage() {
     </>
   );
 }
+
+export default HomePage;

@@ -1,42 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import type { ReactNode } from "react";
-
-/** Product data is kept in one place so product cards stay consistent across pages. */
-export const products = [
-  {
-    name: "Organic Hair Oil",
-    type: "Customizable for your hair and scalp concerns",
-    color: "olive",
-    image: "/images/IMG_1215.JPG",
-    featured: true,
-  },
-  {
-    name: "Lash Oil",
-    type: "Nourishes lashes and supports healthy growth",
-    color: "honey",
-    image: "/images/IMG_1216.JPG",
-    featured: true,
-  },
-  {
-    name: "Eyebrow Oil",
-    type: "Nourishes brows and supports healthy growth",
-    color: "clay",
-    image: "/images/IMG_1221.JPEG",
-    featured: true,
-  },
-  {
-    name: "Bamboo Brush",
-    type: "A bamboo brush for your hair-care routine",
-    color: "honey",
-    image: "/images/IMG_9758.JPG",
-    featured: false,
-  },
-];
-
-export const featuredProducts = products.filter(
-  (product) => product.featured
-);
+import type { ProductWithImages } from "@/lib/products";
 
 type SectionHeadingProps = {
   eyebrow: string;
@@ -56,29 +21,43 @@ export function SectionHeading({ eyebrow, title, body }: SectionHeadingProps) {
 }
 
 type ProductGridProps = {
-  items: typeof products;
+  items: ProductWithImages[];
 };
 
 export function ProductGrid({ items }: ProductGridProps) {
   return (
     <div className="product-grid">
       {items.map((product) => (
-        <article className="product-card" key={product.name}>
-          <Link className={`product-image ${product.color}`} href="/products">
-            <Image
-              fill
-              sizes="(max-width: 700px) 100vw, 33vw"
-              src={product.image}
-              alt={product.name}
-            />
-            <span aria-hidden="true" className="bag">+</span>
+        <article className="product-card" key={product.id}>
+          <Link
+            className="product-image"
+            href={`/products/${product.id}`}
+          >
+            {product.image ? (
+              <Image
+                fill
+                sizes="(max-width: 700px) 100vw, 33vw"
+                src={product.image}
+                alt={product.name}
+              />
+            ) : (
+              <div className="product-image-placeholder">
+                No image
+              </div>
+            )}
+
+            <span aria-hidden="true" className="bag">
+              +
+            </span>
           </Link>
 
           <div className="product-meta">
             <div>
               <h3>{product.name}</h3>
-              <p>{product.type}</p>
+              <p>{product.details}</p>
             </div>
+
+            <span>${product.price.toFixed(2)}</span>
           </div>
         </article>
       ))}
@@ -87,12 +66,12 @@ export function ProductGrid({ items }: ProductGridProps) {
 }
 
 /** Displays the small, reusable product collection used on the home and shop pages. */
-export function FeaturedProducts() {
-  return <ProductGrid items={featuredProducts} />;
+export function FeaturedProducts({ items }: ProductGridProps) {
+  return <ProductGrid items={items.slice(0, 3)} />;
 }
 
-export function Products() {
-  return <ProductGrid items={products} />;
+export function Products({ items }: ProductGridProps) {
+  return <ProductGrid items={items} />;
 }
 
 /** Email capture block. Form submission is intentionally a visual placeholder for now. */
