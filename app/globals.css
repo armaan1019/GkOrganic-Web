@@ -190,8 +190,17 @@ img {
   border-bottom: 1px solid rgba(238, 232, 220, 0.2);
 }
 
-.cart-checkout-button {
+.cart-summary .cart-checkout-button {
   width: 100%;
+  justify-content: center;
+  background: var(--surface-warm);
+  color: var(--forest);
+  border: 1px solid var(--cream);
+}
+
+.cart-summary .cart-checkout-button:hover {
+  background: var(--white);
+  color: var(--forest);
 }
 
 .cart-empty {
