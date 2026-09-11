@@ -6,6 +6,7 @@ import { supabase } from "@/lib/supabase";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { signOut } from "@/lib/auth";
+import { useCart } from "@/lib/cart";
 
 type SignedInUser = { name: string };
 
@@ -20,9 +21,26 @@ function AccountIcon() {
   );
 }
 
+function CartIcon() {
+  return (
+    <svg
+      aria-hidden="true"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="1.7"
+    >
+      <path d="M3.5 4.5h2l1.8 10.2a2 2 0 0 0 2 1.7h7.8a2 2 0 0 0 2-1.6L20.5 8H6.2" />
+      <circle cx="9.5" cy="19" r="1.2" />
+      <circle cx="17.5" cy="19" r="1.2" />
+    </svg>
+  );
+}
+
 /** Persistent site navigation displayed above every page. */
 export function Header() {
   const pathname = usePathname();
+  const { cartCount } = useCart();
   const [user, setUser] = useState<SignedInUser | null>(null);
   const [accountOpen, setAccountOpen] = useState(false);
   const accountMenuRef = useRef<HTMLDivElement>(null);
@@ -142,38 +160,53 @@ export function Header() {
           Contact
         </Link>
       </nav>
-      {user ? (
-        <div className="account-menu" ref={accountMenuRef}>
-          <button
-            type="button"
-            className="account-link"
-            aria-label="Open account menu"
-            aria-expanded={accountOpen}
-            onClick={() => setAccountOpen((open) => !open)}
-          >
-            <AccountIcon />
-            <span>Account</span>
-          </button>
+      <div className="header-actions">
+        <Link
+          href="/cart"
+          className="cart-link"
+          aria-label={`Shopping cart${cartCount > 0 ? `, ${cartCount} items:` : ""}`}
+        >
+          <CartIcon />
 
-          {accountOpen && (
-            <div className="account-menu-panel">
-              <p>
-                Hello, <strong>{user.name}</strong>
-              </p>
-
-              <Link href="/account" onClick={() => setAccountOpen(false)}>
-                View account <span>→</span>
-              </Link>
-
-              <button type="button" onClick={handleLogout}>
-                Log out
-              </button>
-            </div>
+          {cartCount > 0 && (
+            <span className="cart-count">
+              {cartCount}
+            </span>
           )}
-        </div>
-      ) : (
-        <Link className="account-link" href="/account" aria-label="Create an account"><AccountIcon /><span>Account</span></Link>
-      )}
+        </Link>
+        {user ? (
+          <div className="account-menu" ref={accountMenuRef}>
+            <button
+              type="button"
+              className="account-link"
+              aria-label="Open account menu"
+              aria-expanded={accountOpen}
+              onClick={() => setAccountOpen((open) => !open)}
+            >
+              <AccountIcon />
+              <span>Account</span>
+            </button>
+
+            {accountOpen && (
+              <div className="account-menu-panel">
+                <p>
+                  Hello, <strong>{user.name}</strong>
+                </p>
+
+                <Link href="/account" onClick={() => setAccountOpen(false)}>
+                  View account <span>→</span>
+                </Link>
+
+                <button type="button" onClick={handleLogout}>
+                  Log out
+                </button>
+              </div>
+            )}
+          </div>
+        ) : (
+          <Link className="account-link" href="/account" aria-label="Create an account"><AccountIcon /><span>Account</span></Link>
+        )}
+      </div>
     </header>
   );
 }

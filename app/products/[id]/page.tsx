@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { getProductById } from "@/lib/products";
 import { ProductGallery } from "./ProductGallery";
+import { AddToCartButton } from "./AddToCartButton";
 
 type ProductPageProps = {
   params: Promise<{
@@ -49,12 +50,11 @@ export default async function ProductPage({
             </p>
           )}
 
-          <button
-            type="button"
-            className="button button-dark add-to-cart-button"
-          >
-            Add to cart
-          </button>
+          <AddToCartButton
+            productId={product.id}
+            name={product.name}
+            price={product.price}
+          />
         </div>
       </div>
     </section>
